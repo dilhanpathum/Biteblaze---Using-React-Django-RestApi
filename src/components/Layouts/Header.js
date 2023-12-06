@@ -35,19 +35,16 @@ function Header() {
             <Nav.Link as={Link} to={"/"}>
               Home
               </Nav.Link>
-            <Nav.Link as={Link} to={"/about"}>
-              About
-              </Nav.Link>
             <Nav.Link as={Link} to={"/menu"}>
               Menu
               </Nav.Link>
-            <Nav.Link as={Link} to={"/shop"}>
-              Our Shop
+            <Nav.Link as={Link} to={"/Admin"}>
+              Admin Panel
               </Nav.Link>
-            <Nav.Link as={Link} to={"/blog"}>
+            <Nav.Link as={Link} to={"/Log In"}>
               Blog
               </Nav.Link>
-            <Nav.Link as={Link} to={"/contact"}>
+            <Nav.Link as={Link} to={"/Register"}>
               Contact
               </Nav.Link>
             <Nav.Link as={Link} to={"/"}>
