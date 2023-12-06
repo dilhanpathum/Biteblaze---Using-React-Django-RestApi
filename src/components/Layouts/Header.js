@@ -4,6 +4,7 @@ import {Container,Nav,Navbar} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from "../../assets/logo/logo.png";
 import "../../styles/HeaderStyles.css";
+import Admin from '../../pages/Admin/Admin';
 
 
 function Header() {
