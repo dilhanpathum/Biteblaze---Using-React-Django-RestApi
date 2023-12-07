@@ -4,7 +4,7 @@ import {Container,Nav,Navbar} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from "../../assets/logo/logo.png";
 import "../../styles/HeaderStyles.css";
-import Admin from '../../pages/Admin/Admin';
+
 
 
 function Header() {
@@ -23,7 +23,7 @@ function Header() {
   return (
     <>
     <header>
-    <Navbar collapseOnSelect expand="lg"  className={`$(nav === true ? "sticky": "")`}>
+    <Navbar collapseOnSelect expand="lg"  className={`${nav === true ? "sticky" : ""}`}>
       <Container>
         <Navbar.Brand href="#home">
           <Link to={"/"} className='logo'>
@@ -43,10 +43,10 @@ function Header() {
               Admin Panel
               </Nav.Link>
             <Nav.Link as={Link} to={"/Log In"}>
-              Blog
+              Sign In
               </Nav.Link>
             <Nav.Link as={Link} to={"/Register"}>
-              Contact
+              Sign Up
               </Nav.Link>
             <Nav.Link as={Link} to={"/"}>
               <div className='cart'>
