@@ -1,9 +1,14 @@
 .adminTable {
     display: flex;
     flex-direction: column;
-
+    background:url("../assets/hero/hero-1.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
     justify-content: center;
-    height: 125vh;
+    padding-top: 110px;
+    padding-bottom: 90px;
+    /* height: 125vh; */
     background-color: antiquewhite;
 }
 
