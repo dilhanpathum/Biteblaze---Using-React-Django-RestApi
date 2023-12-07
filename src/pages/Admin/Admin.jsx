@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../styles/Admin.css"
 import Header from '../../components/Layouts/Header'
+import Footer from '../../components/Layouts/Footer'
 
 export const Admin = () => {
   return (
@@ -144,6 +145,7 @@ export const Admin = () => {
         </tbody>
       </table>
     </div> */}
+    <Footer/>
     </>
   )
 }
