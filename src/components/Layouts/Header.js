@@ -6,6 +6,7 @@ import Logo from "../../assets/logo/logo.png";
 import "../../styles/HeaderStyles.css";
 
 
+
 function Header() {
     const[nav, setNav] = useState(false);
     
@@ -22,7 +23,7 @@ function Header() {
   return (
     <>
     <header>
-    <Navbar collapseOnSelect expand="lg"  className={`$(nav === true ? "sticky": "")`}>
+    <Navbar collapseOnSelect expand="lg"  className={`${nav === true ? "sticky" : ""}`}>
       <Container>
         <Navbar.Brand href="#home">
           <Link to={"/"} className='logo'>
@@ -35,20 +36,17 @@ function Header() {
             <Nav.Link as={Link} to={"/"}>
               Home
               </Nav.Link>
-            <Nav.Link as={Link} to={"/about"}>
-              About
-              </Nav.Link>
             <Nav.Link as={Link} to={"/menu"}>
               Menu
               </Nav.Link>
-            <Nav.Link as={Link} to={"/shop"}>
-              Our Shop
+            <Nav.Link as={Link} to={"/Admin"}>
+              Admin Panel
               </Nav.Link>
-            <Nav.Link as={Link} to={"/blog"}>
-              Blog
+            <Nav.Link as={Link} to={"/Log In"}>
+              Sign In
               </Nav.Link>
-            <Nav.Link as={Link} to={"/contact"}>
-              Contact
+            <Nav.Link as={Link} to={"/Register"}>
+              Sign Up
               </Nav.Link>
             <Nav.Link as={Link} to={"/"}>
               <div className='cart'>
