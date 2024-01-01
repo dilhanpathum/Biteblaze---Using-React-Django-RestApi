@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include,re_path
+
+from biteblaze import views
 
 urlpatterns = [
+    re_path(r'^student$',views.biteblazeApi),
+    re_path(r'^student$',views.biteblazeApi),
+    re_path(r'^student/([0-9]+)$',views.biteblazeApi),
     path('admin/', admin.site.urls),
+    path('biteblaze/', include('biteblaze.urls'))
 ]
+
+
