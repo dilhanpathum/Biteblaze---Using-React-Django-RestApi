@@ -1,0 +1,75 @@
+/* Form.css */
+.food_order_section {
+    position: relative;
+    background: url("../assets/FoodOrder/fries_food.jpg") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 280px;
+  }
+  
+  .food-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: black; 
+    color: white; 
+    padding: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 105px;
+    height: 350px;
+  }
+  
+  .food-form-container div {
+    margin-bottom: 15px;
+  }
+  
+  .food-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .food-form-container input,
+  .food-form-container select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .food-form-container button {
+    background-color: rgb(231, 21, 21);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .food-form-container button:hover {
+    background-color: orangered;
+  }
+  
+
+
+  .food-form-container header {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  
+  .top-bar,
+.bottom-bar {
+  height: 10px;
+  background-color: orangered; 
+  width: 100%;
+  top :0%;
+  bottom: 0%;
+}
+
+  

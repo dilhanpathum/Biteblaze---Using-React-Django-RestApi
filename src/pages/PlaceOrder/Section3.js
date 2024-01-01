@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../styles/OrderForm.css";
+import "../../styles/OrderForm.css";
 
 
 function Section3() {
