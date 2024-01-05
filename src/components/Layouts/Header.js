@@ -42,10 +42,10 @@ function Header() {
             <Nav.Link as={Link} to={"/Admin"}>
               Admin Panel
               </Nav.Link>
-            <Nav.Link as={Link} to={"/Log In"}>
+            <Nav.Link as={Link} to={"/login"}>
               Sign In
               </Nav.Link>
-            <Nav.Link as={Link} to={"/Register"}>
+            <Nav.Link as={Link} to={"/Signup"}>
               Sign Up
               </Nav.Link>
             <Nav.Link as={Link} to={"/"}>
