@@ -3,11 +3,7 @@ import "../../styles/Login.css"
 import userr from "../../assets/logo/userr.png";
 
 const Signup = () => {
-<<<<<<< Updated upstream
-  
-=======
 
->>>>>>> Stashed changes
   return (
     <div className="coonn min-h-screen flex items-center justify-center bg-gray-300">
     <div className="container mx-auto p-16 ">
@@ -16,17 +12,15 @@ const Signup = () => {
           {/* <div className="container rounded-2xl bg-gray-500"> */}
           <div className="bg-black sm:mx-auto sm:w-full sm:max-w-lg rounded-3xl"> 
         <div className="sm:mx-auto sm:w-full sm:max-w-lg">
-<<<<<<< Updated upstream
+
           
              
             <img src={userr} alt="Sign In" className='myimg'/>
-          
-=======
 
 
-            <img src={userr} alt="Sign In" className='myimg'/>
 
->>>>>>> Stashed changes
+
+
           <div className="container rounded-2xl bg-gray-900 w-84 h-84"></div>
           <h2 className="bon mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-white">
             Sign Up to your account
@@ -129,25 +123,20 @@ const Signup = () => {
         </div>
         </div>
       </div>
-<<<<<<< Updated upstream
-         
-=======
 
->>>>>>> Stashed changes
+         
+
         </div>
         </div>
         </div>
   )
-<<<<<<< Updated upstream
+
  
   
   }
 
 export default Signup
-=======
 
 
-  }
 
-export default Signup
->>>>>>> Stashed changes
+

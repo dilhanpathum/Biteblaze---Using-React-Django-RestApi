@@ -6,16 +6,11 @@ import Admin from "./pages/Admin/Admin";
 
 import Login from "./pages/LoginSignup/Login";
 import Signup from "./pages/LoginSignup/Signup";
- 
-
-
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderForm from "./pages/PlaceOrder/OrderForm";
-import Login from "./pages/LoginSignup/Login";
-import Signup from "./pages/LoginSignup/Signup";
 
-import OrderHistory from "./pages/OrderHistory/OrderHistory";
-import OrderForm from "./pages/PlaceOrder/OrderForm";
+
+
 
 
 function App() {
