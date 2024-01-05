@@ -7,7 +7,6 @@ function Home() {
   return (
     <>
     <Layout>
-        {/* {Home Section Banner}} */}
         <Section1/>
     </Layout>
     </>
