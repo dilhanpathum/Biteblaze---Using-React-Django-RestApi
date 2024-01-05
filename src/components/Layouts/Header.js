@@ -42,10 +42,17 @@ function Header() {
             <Nav.Link as={Link} to={"/Admin"}>
               Admin Panel
               </Nav.Link>
+<<<<<<< Updated upstream
             <Nav.Link as={Link} to={"/login"}>
               Sign In
               </Nav.Link>
             <Nav.Link as={Link} to={"/Signup"}>
+=======
+              <Nav.Link as={Link} to={"/login"}>
+              Sign In
+              </Nav.Link>
+              <Nav.Link as={Link} to={"/Signup"}>
+>>>>>>> Stashed changes
               Sign Up
               </Nav.Link>
             <Nav.Link as={Link} to={"/"}>
