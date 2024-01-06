@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'biteblaze',
+    'User',
+    'rest_framework.authtoken',
 
 ]
 
@@ -134,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_HEADERS=True
+CROS_ALLOWED_ORIGINS=["http://localhost:3000"]
+AUTH_USER_MODEL = 'User.CustomUser'

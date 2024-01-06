@@ -1,12 +1,11 @@
 from django.urls import path, include
 from rest_framework import routers
-from biteblaze import views
+from User import views
 #api verstoning
 
 router = routers.DefaultRouter()
-router.register(r'biteblaze', views.TaskView, basename='biteblaze')
 
+router.register('users', views.CustomUserView, basename='User')
 urlpatterns = [
     path("api/", include(router.urls))
 ]
-
