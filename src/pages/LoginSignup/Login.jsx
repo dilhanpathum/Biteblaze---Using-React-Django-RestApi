@@ -3,8 +3,34 @@ import "../../styles/Login.css"
 import userr from "../../assets/logo/userr.png";
 import Header from '../../components/Layouts/Header'
 import Footer from '../../components/Layouts/Footer'
+import { useState,useEffect} from 'react';
+import APIService from '../../api/APIService';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+  // login function
+  const [username,setUsername] =useState('')
+  const [password,setPassword] = useState('')
+  //set token
+  const [token, setToken] = useCookies(['mytoken'])
+  let navigate = useNavigate()
+
+  useEffect(() =>{
+    if(token['mytoken']){
+      navigate('/home')
+    }
+  },[token])
+
+
+  const loginBtn = () => {
+    APIService.LoginUser({username, password})
+    .then(resp => setToken('mytoken',resp.token))
+    .then(error => console.log(error))
+  }
+
   
+  //login form
   return (
     <>
     <Header/>
@@ -26,19 +52,20 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <div className="space-y-6">
             <div>
               <label htmlFor="userName" className="name block text-lg font-medium leading-6 text-white">
-                User Name
+                Email
               </label>
               <div className="mt-2">
                 <input
-                  id="userName"
-                  name="userName"
-                  type="userName"
-                  autoComplete="userName"
+                  id="email"
+                  name="email"
+                  type="text"
+                  placeholder='Enter Email'
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={username} onChange={e => setUsername(e.target.value)}
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -59,22 +86,24 @@ const Login = () => {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  placeholder='Enter password'
+                  value={password} onChange={e => setPassword(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div>
               <button
-                type="submit"
+                
                 className="bonn flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={loginBtn}
               >
                 Sign in
               </button>
             </div>
-          </form>
+          </div>
 
           <p className="mt-10 text-center text-lg text-white">
             Don't have an Account?{' '}

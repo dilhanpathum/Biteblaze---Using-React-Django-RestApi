@@ -8,6 +8,9 @@ from django.http.response import JsonResponse
 from biteblaze.serializers import BiteblazeSerializer
 from biteblaze.models import Biteblaze
 
+
+
+
 class TaskView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
