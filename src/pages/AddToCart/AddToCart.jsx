@@ -1,6 +1,6 @@
 // AddToCart.js
 import React, { useState } from 'react';
-import './AddToCart.css';
+import '../../styles/AddToCart.css';
 
 
 

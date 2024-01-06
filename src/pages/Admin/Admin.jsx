@@ -15,8 +15,10 @@ export const Admin = () => {
                         <div className="col-12 col-sm-6 col-md-6 justify-content-end d-flex">
                             <h3 className="text-white mb-4 justify-content-center">Admin Dashboard</h3>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-6 text-end" style={{marginBottom: '30px'}}><a
-                                className="btn btn-primary" role="button"><i class="fa fa-plus"></i>&nbsp;ADD USER</a></div>
+                        <div className="col-12 col-sm-3 col-md-3 text-end" style={{marginBottom: '30px'}}><a
+                                className="btn btn-primary" role="button" href='/signup'><i class="fa fa-plus"></i>ADD USER</a></div>
+                                <div className="col-12 col-sm-3 col-md-3 text-end" style={{marginBottom: '30px'}}><a
+                                className="btn btn-primary" role="button" href='/addfood'><i class="fa fa-plus"></i>ADD FOOD</a></div>
                     </div>
                     <div className="card" id="TableSorterCard" style={{borderStyle: 'none',borderRadius: '6.5px'}}>
                         <div className="card-header py-3" style={{borderWidth: '0px',background: 'rgb(23,25,33)'}}>
@@ -122,29 +124,7 @@ export const Admin = () => {
             </div>
           </div>
        </div> 
-    {/* <div className='adminTable'>
-      <table className='table'>
-        <thead>
-          <th>Id</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Orders</th>
-          <th>Actions</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>01</td>
-            <td>Dilhan</td>
-            <td>Pathum</td>
-            <td>2</td>
-            <td>
-              <span><i class="bi bi-trash3-fill text-danger"></i></span>
-              <span><i class="bi bi-eye-fill text-primary"></i></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> */}
+    
     <Footer/>
     </>
   )

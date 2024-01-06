@@ -27,7 +27,7 @@ function Section1() {
                         Cheesy Bites Pizza: Irresistibly indulgent, our pizza features a tantalizing 
                         crust filled with gooey, melted cheese for a burst of flavor in every bite.
                         </p>
-                        <Link to="/" className='order_now btn'>
+                        <Link to="/orderForm" className='order_now btn'>
                             Order Now
                         </Link>
                     </div>
