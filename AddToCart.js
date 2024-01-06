@@ -1,6 +1,6 @@
-// App.js
+// AddToCart.js
 import React, { useState } from 'react';
-import './App.css';
+import './AddToCart.css';
 
 const menuItems = [
   {
@@ -79,7 +79,7 @@ const menuItems = [
   // Add more menu items as needed
 ];
 
-function App() {
+function AddToCart() {
   const [expandedItem, setExpandedItem] = useState(null);
 
   const toggleDescription = (itemId) => {
@@ -124,4 +124,4 @@ function App() {
   );
 }
 
-export default App;
+export default AddToCart;
