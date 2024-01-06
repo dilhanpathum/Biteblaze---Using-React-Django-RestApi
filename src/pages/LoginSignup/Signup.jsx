@@ -1,10 +1,13 @@
 import React from 'react'
 import "../../styles/Login.css"
 import userr from "../../assets/logo/userr.png";
-
+import Header from '../../components/Layouts/Header'
+import Footer from '../../components/Layouts/Footer'
 const Signup = () => {
 
   return (
+    <>
+    <Header/>
     <div className="coonn min-h-screen flex items-center justify-center bg-gray-300">
     <div className="container mx-auto p-16 ">
     <div>
@@ -113,7 +116,7 @@ const Signup = () => {
 
           <p className="mt-10 text-center text-lg text-white">
             Already have an Account?{' '}
-            <a href="#" className="font-semibold leading-6 text-white hover:text-indigo-500">
+            <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">
               Sign In
             </a>
           </p>
@@ -129,6 +132,8 @@ const Signup = () => {
         </div>
         </div>
         </div>
+        <Footer/>
+        </>
   )
 
  
