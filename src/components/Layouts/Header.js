@@ -20,24 +20,37 @@ function Header() {
   window.addEventListener("scroll", changeValueOnScroll);
 
   //get user details
-  
-  const [username, setUsername] = useCookies(['username']);
-  const [role, setRole] = useCookies(['role']);
-  const [token, setToken] = useCookies(["mytoken"]);
+
+  const [username, setUsername, removeUsername] = useCookies(["username"]);
+  const [role, setRole,removeRole] = useCookies(["role"]);
+  const [id, setId, removeId] = useCookies(["id"]);
+  const [token, setToken, removeToken] = useCookies(["mytoken"]);
   //load user details
 
   useEffect(() => {
-    if(token['mytoken']){
-      
-    APIService.GetUserDetails(token["mytoken"])
-      .then((resp) => setUsername('username',resp.username))
-      .then((resp) => setRole('role',resp.role))
-      .catch((error) => console.log(error));
-      
-    }
-    
-  },[token]);
+    if (token["mytoken"]) {
+      APIService.GetUserDetails(token["mytoken"])
+        .then((resp) => setUsername("username", resp.username))
+        .catch((error) => console.log(error));
 
+      APIService.GetUserDetails(token["mytoken"])
+        .then((resp) => setRole("role", resp.role))
+        .catch((error) => console.log(error));
+
+      APIService.GetUserDetails(token["mytoken"])
+        .then((resp) => setRole("id", resp.id))
+        .catch((error) => console.log(error));
+    }
+  }, [token]);
+
+  //logout function
+
+  const logoutBtn = () =>{
+    removeId(['id'])
+    removeRole(['role'])
+    removeUsername(['username'])
+    removeToken(['mytoken'])
+  }
   return (
     <>
       <header>
@@ -61,27 +74,32 @@ function Header() {
                 <Nav.Link as={Link} to={"/menu"}>
                   Menu
                 </Nav.Link>
+                {role["role"]==='admin' ? (
                 <Nav.Link as={Link} to={"/Admin"}>
                   Admin Panel
                 </Nav.Link>
-
-                {useEffect(() => {
-                  if (username) {
+                 ) :null
+}
+                {username["username"] ? (
+                  <>
+                    <Nav.Link as={Link} to={"/orderHistory"}>
+                      {username.username}
+                    </Nav.Link>
+                    <Nav.Link as={Link} onClick={logoutBtn}>
+                      Log Out
+                    </Nav.Link>
+                  </>
+                ) : (
+                  <>
                     <Nav.Link as={Link} to={"/login"}>
-                      {username}
-                    </Nav.Link>;
-                    <Nav.Link as={Link} to={"/login"}>
-                    Log Out
-                  </Nav.Link>;
-                  }
-                }, [username])}
+                      Sign In
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/Signup"}>
+                      Sign Up
+                    </Nav.Link>
+                  </>
+                )}
 
-                <Nav.Link as={Link} to={"/login"}>
-                  Sign In
-                </Nav.Link>
-                <Nav.Link as={Link} to={"/Signup"}>
-                  Sign Up
-                </Nav.Link>
                 <Nav.Link as={Link} to={"/"}>
                   <div className="cart">
                     <i class="bi bi-bag fs-5"></i>

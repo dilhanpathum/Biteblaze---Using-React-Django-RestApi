@@ -17,4 +17,4 @@ class GetUserView(APIView):
     def get(self, request):
         user = request.user
         # 'user' now contains the User object associated with the token
-        return Response({'username': user.username,'role': user.role})
+        return Response({'id':user.id,'username': user.username,'role': user.role})
