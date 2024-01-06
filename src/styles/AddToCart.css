@@ -1,15 +1,18 @@
 /* AddToCart.css */
 .App {
     text-align: center;
+    background:url("../assets/hero/hero-1.jpg") no-repeat center center;
   }
   
   .App-header {
-    background-color: #720a0a;
+
     padding: 20px;
     color: rgb(255, 255, 255);
     justify-content: center;
   }
-  
+  .App-header h1{
+    margin-top: 110px;
+  }
   .menu-container {
     display: flex;
     flex-wrap: wrap;

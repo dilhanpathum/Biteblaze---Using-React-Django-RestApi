@@ -1,7 +1,8 @@
 // AddToCart.js
 import React, { useState } from 'react';
 import '../../styles/AddToCart.css';
-
+import Header from '../../components/Layouts/Header';
+import Footer from '../../components/Layouts/Footer';
 
 
 
@@ -90,8 +91,10 @@ function AddToCart() {
   };
 
   return (
+    <>
+    <Header/>
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
         <h1>our crazy foods</h1>
         <h3>
           Elevate your dining experience with this exquisite creation that marries freshness and finesse on every plate</h3>
@@ -122,8 +125,10 @@ function AddToCart() {
             </div>
           ))}
     </div>
-      </header >
+      </div >
     </div >
+    <Footer/>
+    </>
   );
 }
 

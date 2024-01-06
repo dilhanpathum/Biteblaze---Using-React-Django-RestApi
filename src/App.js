@@ -8,7 +8,7 @@ import Login from "./pages/LoginSignup/Login";
 import Signup from "./pages/LoginSignup/Signup";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderForm from "./pages/PlaceOrder/OrderForm";
-
+import AddToCart from "./pages/AddToCart/AddToCart";
 
 
 
@@ -25,6 +25,7 @@ function App() {
         <Route path="/orderHistory" element={<OrderHistory/>} />
         <Route path="/OrderForm" element={<OrderForm/>} />
         <Route path="/addfood" element={<AddFood/>} />
+        <Route path="/menu" element={<AddToCart/>} />
         
 
 
