@@ -72,13 +72,13 @@
     margin-top: 5px;
   }
   
-  .buttons-container {
+  .buttons-container1 {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
   }
   
-  button {
+  button1 {
     background-color: #FF4500;
     color: white;
     padding: 10px;
@@ -89,11 +89,11 @@
     margin-bottom: 10px;
   }
   
-  button:hover {
+  button1:hover {
     background-color: black;
     color: #FF4500;
   }
-  .button-space {
+  .button1-space {
     width: 10px; 
   }
   
