@@ -112,12 +112,12 @@ function AddToCart() {
 
 
 
-                <div className="buttons-container">
-                  <button>Add to Cart</button>
-                  <div className="button-space" /> {/* Add a div for space */}
-                  <button onClick={() => toggleDescription(item.id)}>
+                <div className="buttons-container1">
+                  <button1>Add to Cart</button1>
+                  <div className="button1-space" /> {/* Add a div for space */}
+                  <button1 onClick={() => toggleDescription(item.id)}>
                     {expandedItem === item.id ? 'View Less' : 'View More'}
-                  </button>
+                  </button1>
                 </div>
 
 
