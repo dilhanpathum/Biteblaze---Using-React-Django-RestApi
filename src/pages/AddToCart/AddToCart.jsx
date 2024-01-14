@@ -1,12 +1,11 @@
 // AddToCart.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/AddToCart.css';
 import Header from '../../components/Layouts/Header';
 import Footer from '../../components/Layouts/Footer';
 
-
-
 const menuItems = [
+  // ... (your existing menu items)
   {
     id: 1,
     name: 'pizza',
@@ -78,56 +77,120 @@ const menuItems = [
     price: 550.99,
     image: 'https://images.pexels.com/photos/2092906/pexels-photo-2092906.jpeg?auto=compress&cs=tinysrgb&w=600', // Replace with your food image URL
   },
-
-
-  // Add more menu items as needed
 ];
 
 function AddToCart() {
   const [expandedItem, setExpandedItem] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [itemAddedMsg, setItemAddedMsg] = useState(null);
+
+  useEffect(() => {
+    // Clear the message after 3 seconds (adjust the duration as needed)
+    if (itemAddedMsg) {
+      const timeoutId = setTimeout(() => {
+        setItemAddedMsg(null);
+      }, 9000);
+
+      // Clear the timeout when the component unmounts or when a new message is added
+      return () => clearTimeout(timeoutId);
+    }
+  }, [itemAddedMsg]);
 
   const toggleDescription = (itemId) => {
     setExpandedItem(expandedItem === itemId ? null : itemId);
   };
 
+  const addToCart = (item) => {
+    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+
+    if (isItemInCart) {
+      setItemAddedMsg(`"${item.name}" is already in the cart.`);
+    } else {
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      setItemAddedMsg(`"${item.name}" has been added to the cart.`);
+    }
+  };
+
+  const removeCartItem = (itemId) => {
+    const updatedCart = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCart);
+  };
+
+  const updateQuantity = (itemId, newQuantity) => {
+    const updatedCart = cartItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setCartItems(updatedCart);
+  };
+
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  };
+
+  const placeOrder = () => {
+    console.log("Order placed:", cartItems);
+  };
+
   return (
     <>
-    <Header/>
-    <div className="App">
-      <div className="App-header">
-        <h1>our crazy foods</h1>
-        <h3>
-          Elevate your dining experience with this exquisite creation that marries freshness and finesse on every plate</h3>
-        <div className="menu-container">
-          {menuItems.map((item) => (
-            <div key={item.id} className="menu-item">
-              <img src={item.image} alt={item.name} />
-              <div className="item-details">
-                <h4>{item.name}</h4>
-                <p className={expandedItem === item.id ? 'expanded' : 'collapsed'}>{item.description}</p>
-                {expandedItem === item.id && (
-                  <p className="expanded-description">Delicious burger with all the fixings.</p>
-                )}
-                <p>Rs {item.price.toFixed(2)}</p>
+      <Header />
+      <div className="App">
+        <div className="App-header">
+          <h1>our crazy foods</h1>
+          <h3>Elevate your dining experience with this exquisite creation that marries freshness and finesse on every plate</h3>
+          <div className="menu-container">
+            {menuItems.map((item) => (
+              <div key={item.id} className="menu-item">
+                <img src={item.image} alt={item.name} />
+                <div className="item-details">
+                  <h4>{item.name}</h4>
+                  <p className={expandedItem === item.id ? 'expanded' : 'collapsed'}>{item.description}</p>
+                  {expandedItem === item.id && (
+                    <p className="expanded-description">Delicious {item.name} with all the fixings.</p>
+                  )}
+                  <p>Rs {item.price.toFixed(2)}</p>
 
-
-
-                <div className="buttons-container1">
-                  <button1>Add to Cart</button1>
-                  <div className="button1-space" /> {/* Add a div for space */}
-                  <button1 onClick={() => toggleDescription(item.id)}>
-                    {expandedItem === item.id ? 'View Less' : 'View More'}
-                  </button1>
+                  <div className="buttons-container1">
+                    <button1 onClick={() => addToCart(item)}>Add to Cart</button1>
+                    <div className="button1-space" />
+                    <button1 onClick={() => toggleDescription(item.id)}>
+                      {expandedItem === item.id ? 'View Less' : 'View More'}
+                    </button1>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
+      <div className="cart-container">
+        <h2>Shopping Cart</h2>
+        {cartItems.map((cartItem) => (
+          <div key={cartItem.id} className="cart-item">
+            <img src={cartItem.image} alt={cartItem.name} />
+            <div className="cart-item-details">
+              <h4>{cartItem.name}</h4>
+              <p>Quantity: {cartItem.quantity}</p>
+              <div className="quantity-controls">
+                <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}>-</button>
+                <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}>+</button>
+              </div>
+              <p>Price: Rs {(cartItem.price * cartItem.quantity).toFixed(2)}</p>
+              <button onClick={() => removeCartItem(cartItem.id)}>Delete</button>
+            </div>
+          </div>
+        ))}
+        {itemAddedMsg && <div className="item-added-msg">{itemAddedMsg}</div>}
+        {cartItems.length > 0 && (
+          <div className="order-summary">
+            <p>Total: Rs {getTotalPrice()}</p>
+            <button className="place-order-button" onClick={placeOrder}>Place Order</button>
+          </div>
+        )}
+      </div>
 
-            </div>
-            </div>
-          ))}
-    </div>
-      </div >
-    </div >
-    <Footer/>
+      <Footer />
     </>
   );
 }
