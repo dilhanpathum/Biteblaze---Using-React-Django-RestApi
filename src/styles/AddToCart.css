@@ -2,6 +2,8 @@
 
 /* ... (your existing styles) */
 
+/* ... (your existing styles) */
+
 .App {
   text-align: center;
   background: url("../assets/hero/hero-1.jpg") no-repeat center center;
@@ -96,8 +98,7 @@ button1:hover {
 }
 
 
-
-/* New styles for the shopping cart section */
+/*  shopping cart section */
 
 .cart-container {
   background-color: black;
@@ -105,62 +106,41 @@ button1:hover {
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
-  width:100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid white;
+  padding: 4px;
+  text-align: left;
+  background-color: #272424;
+}
+
+th {
+  background-color: #FF4500;
+  color: white;
 }
 
 .cart-item {
+  background-color: #474747; /* Gray background color for cart items */
   border-radius: 10px;
   display: flex;
   padding: 20px;
   align-items: center;
-  background-color: #272222;
   margin-bottom: 15px;
   animation: fadeInUp 3s ease-in-out; /* Add animation for cart items */
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .cart-item img {
-  width: 50px;
-  height: 50px;
+  width: 10px; /* Decreased width to 10px */
+  height: 10px; /* Decreased height to 10px */
   border-radius: 5px;
   margin-right: 10px;
-}
-
-.cart-item-details {
-  flex-grow: 1;
-}
-
-.cart-item button {
-  background-color: black;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cart-item button:hover {
-  background-color: #FF4500;
-}
-
-.order-summary {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.order-summary p {
-  margin-bottom: 10px;
 }
 
 .quantity-controls button {
@@ -172,6 +152,12 @@ button1:hover {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 5px;
+}
+
+.quantity-controls span {
+  padding: 5px 10px;
+  margin: 0 5px;
+  color: #FF4500;
 }
 
 .quantity-controls button:hover {
@@ -191,7 +177,9 @@ button1:hover {
 
 .place-order-button:hover {
   background-color: black;
+  
 }
+
 .item-added-msg {
   background-color: #4CAF50;
   color: white;
@@ -199,4 +187,14 @@ button1:hover {
   margin-bottom: 10px;
   border-radius: 5px;
   text-align: center;
+}
+.delete-button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.total-items-row {
+  background-color: #474747;
 }
