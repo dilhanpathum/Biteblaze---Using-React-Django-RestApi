@@ -85,16 +85,17 @@ function AddToCart() {
   const [itemAddedMsg, setItemAddedMsg] = useState(null);
 
   useEffect(() => {
-    // Clear the message after 3 seconds (adjust the duration as needed)
     if (itemAddedMsg) {
-      const timeoutId = setTimeout(() => {
-        setItemAddedMsg(null);
-      }, 9000);
+       const timeoutId = setTimeout(() => {
+         setItemAddedMsg(null);
+       }, 5000);
 
-      // Clear the timeout when the component unmounts or when a new message is added
-      return () => clearTimeout(timeoutId);
+       //Commented out the timeout for testing
+       return () => clearTimeout(timeoutId);
     }
-  }, [itemAddedMsg]);
+  }, [itemAddedMsg, setItemAddedMsg]);
+
+
 
   const toggleDescription = (itemId) => {
     setExpandedItem(expandedItem === itemId ? null : itemId);
@@ -104,12 +105,15 @@ function AddToCart() {
     const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
 
     if (isItemInCart) {
+      console.log(`"${item.name}" is already in the cart.`);
       setItemAddedMsg(`"${item.name}" is already in the cart.`);
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      console.log(`"${item.name}" has been added to the cart.`);
       setItemAddedMsg(`"${item.name}" has been added to the cart.`);
     }
   };
+
 
   const removeCartItem = (itemId) => {
     const updatedCart = cartItems.filter((item) => item.id !== itemId);
@@ -156,38 +160,62 @@ function AddToCart() {
                     <button1 onClick={() => toggleDescription(item.id)}>
                       {expandedItem === item.id ? 'View Less' : 'View More'}
                     </button1>
+
                   </div>
                 </div>
               </div>
             ))}
+
+           
+
           </div>
         </div>
       </div>
 
       <div className="cart-container">
         <h2>Shopping Cart</h2>
-        {cartItems.map((cartItem) => (
-          <div key={cartItem.id} className="cart-item">
-            <img src={cartItem.image} alt={cartItem.name} />
-            <div className="cart-item-details">
-              <h4>{cartItem.name}</h4>
-              <p>Quantity: {cartItem.quantity}</p>
-              <div className="quantity-controls">
-                <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}>-</button>
-                <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}>+</button>
-              </div>
-              <p>Price: Rs {(cartItem.price * cartItem.quantity).toFixed(2)}</p>
-              <button onClick={() => removeCartItem(cartItem.id)}>Delete</button>
-            </div>
-          </div>
-        ))}
-        {itemAddedMsg && <div className="item-added-msg">{itemAddedMsg}</div>}
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((cartItem) => (
+              <tr key={cartItem.id}>
+                <td><img src={cartItem.image} alt={cartItem.name} style={{ width: '75px', height: '75px', borderRadius: '5px' }} /></td>
+                <td>{cartItem.name}</td>
+                <td>
+                  <div className="quantity-controls">
+                    <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}>-</button>
+                    <span>{cartItem.quantity}</span>
+                    <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}>+</button>
+                  </div>
+                </td>
+                <td>Rs {(cartItem.price * cartItem.quantity).toFixed(2)}</td>
+                <td><button className="delete-button" onClick={() => removeCartItem(cartItem.id)}>Delete</button></td>
+              </tr>
+            ))}
+            <tr className="total-items-row">
+              <td colSpan="2"></td>
+              <td>Total Quantity: {cartItems.reduce((total, item) => total + item.quantity, 0)}</td>
+              <td>Total Price: Rs {cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</td>
+              <td></td>
+            </tr>
+          </tbody>
+
+        </table>
         {cartItems.length > 0 && (
           <div className="order-summary">
-            <p>Total: Rs {getTotalPrice()}</p>
+            {/* <p>Total: Rs {getTotalPrice()}</p> */}
             <button className="place-order-button" onClick={placeOrder}>Place Order</button>
           </div>
         )}
+         {itemAddedMsg && <div className="item-added-msg">{itemAddedMsg}</div>}
       </div>
 
       <Footer />
