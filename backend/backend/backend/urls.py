@@ -20,11 +20,19 @@ from django.urls import path, include,re_path
 from biteblaze import views
 
 urlpatterns = [
-    re_path(r'^student$',views.biteblazeApi),
-    re_path(r'^student$',views.biteblazeApi),
-    re_path(r'^student/([0-9]+)$',views.biteblazeApi),
+    # re_path(r'^student$',views.biteblazeApi),
+    # re_path(r'^student$',views.biteblazeApi),
+    # re_path(r'^student/([0-9]+)$',views.biteblazeApi),
     path('admin/', admin.site.urls),
+<<<<<<< Updated upstream
     path('biteblaze/', include('biteblaze.urls'))
+=======
+    path('', include('biteblaze.urls')),
+    path('auth/', obtain_auth_token),
+    path('', include('User.urls')),
+    path(r'user/obtain_auth_token/', GetUserView.as_view()),
+    
+>>>>>>> Stashed changes
 ]
 
 
