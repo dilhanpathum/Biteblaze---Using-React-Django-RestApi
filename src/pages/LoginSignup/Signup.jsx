@@ -5,16 +5,29 @@ import Header from '../../components/Layouts/Header'
 import Footer from '../../components/Layouts/Footer'
 import APIService from '../../api/APIService';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { render } from '@testing-library/react';
 
 const Signup = () => {
 //registation function
+const [response ,setResponse] = useState([])
 const [username,setUsername] =useState('')
 const [password,setPassword] = useState('')
 const [email,setEmail] = useState('')
 const [fullname,setFullname] = useState('')
+let navigate = useNavigate()
+
+  if(response.id!=null){
+
+    toast.success("Registraion Successfully!")
+    navigate("/login")
+  }
+
+
 const RegisterBtn = () =>{
   APIService.RegisterUser({email,password,fullname,username})
-  .then(resp => console.log(resp))
+  .then((resp) => setResponse(resp))
   .catch(error => console.log(error))
 } 
   return (
@@ -59,12 +72,19 @@ const RegisterBtn = () =>{
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.fullname!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.fullname}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
             <div>
               <label htmlFor="userName" className="name block text-lg font-medium leading-6 text-white">
-                User Name
+                Username
               </label>
               <div className="mt-2">
                 <input
@@ -76,6 +96,13 @@ const RegisterBtn = () =>{
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.username!==null ? (
+              <>
+             
+                <span className="error text-center text-lg text-danger">{response.username}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
@@ -93,6 +120,13 @@ const RegisterBtn = () =>{
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.email!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.email}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
@@ -117,6 +151,13 @@ const RegisterBtn = () =>{
                   required
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.password!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.password}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
@@ -129,7 +170,7 @@ const RegisterBtn = () =>{
               </button>
             </div>
           </div>
-
+          
           <p className="mt-10 text-center text-lg text-white">
             Already have an Account?{' '}
             <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">

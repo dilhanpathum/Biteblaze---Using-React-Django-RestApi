@@ -30,9 +30,9 @@ class UserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
 
     email = models.EmailField(max_length=254, unique=True)
-    password = models.CharField(max_length=128, null=True)
-    fullname = models.CharField(max_length=255, null=True, blank=True)
-    username = models.CharField(max_length=255, null=True, blank=True)
+    password = models.CharField(max_length=128, )
+    fullname = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     role = models.CharField(max_length=255, null=True, blank=True,default='customer')
