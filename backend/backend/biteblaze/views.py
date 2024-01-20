@@ -12,13 +12,7 @@ from biteblaze.serializers import BiteblazeSerializer
 from biteblaze.serializers import OrderSerializer
 from biteblaze.models import Biteblaze
 
-<<<<<<< Updated upstream
-=======
 
-
-
-
->>>>>>> Stashed changes
 class TaskView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
