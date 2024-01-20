@@ -7,7 +7,7 @@ import APIService from '../../api/APIService';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { render } from '@testing-library/react';
+
 
 const Signup = () => {
 //registation function
