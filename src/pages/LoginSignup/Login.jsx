@@ -14,18 +14,26 @@ const Login = () => {
   const [password,setPassword] = useState('')
   //set token
   const [token, setToken] = useCookies(['mytoken'])
+   const [error,setError] = useState('')
   let navigate = useNavigate()
 
   useEffect(() =>{
     if(token['mytoken']){
       navigate('/home')
     }
-  },[token])
-
-
+    
+  })
+ 
   const loginBtn = () => {
     APIService.LoginUser({username, password})
-    .then(resp => setToken('mytoken',resp.token))
+    .then((resp) => {if(resp.token){
+      setToken('mytoken',resp.token)
+    }else{
+        setError("Email or Password Incorrect")
+        setPassword("")
+        setUsername("")
+    }})
+    // .then((resp) => {setToken('mytoken',resp.token))})
     .then(error => console.log(error))
   }
 
@@ -102,10 +110,18 @@ const Login = () => {
               >
                 Sign in
               </button>
+              
             </div>
+            {error!==null ? (
+              <>
+              <br></br>
+                <span className="error ml-20 text-center text-lg text-danger">{error}</span>
+                </>
+                 ) :null
+                 }
           </div>
-
-          <p className="mt-10 text-center text-lg text-white">
+          
+          <p className=" text-center text-lg text-white">
             Don't have an Account?{' '}
             <a href="/signup" className="font-semibold leading-6 text-white hover:text-indigo-500">
               Register

@@ -10,23 +10,29 @@ import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import OrderForm from "./pages/PlaceOrder/OrderForm";
 import AddToCart from "./pages/AddToCart/AddToCart";
 import { CookiesProvider } from "react-cookie";
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
+    
     <CookiesProvider>
+      <Toaster/>
       <Router>
         <Routes>
+        
           <Route path="/" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="Admin" element={<Admin />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="Signup" element={<Signup />} />
           <Route path="/orderHistory" element={<OrderHistory />} />
           <Route path="/OrderForm" element={<OrderForm />} />
           <Route path="/addfood" element={<AddFood />} />
           <Route path="/menu" element={<AddToCart />} />
+          
         </Routes>
+        
       </Router>
+      
     </CookiesProvider>
   );
 }

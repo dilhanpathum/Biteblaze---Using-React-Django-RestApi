@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 export default class APIService {
 //login user & get token
@@ -11,6 +11,7 @@ export default class APIService {
      },
      body:JSON.stringify(body)
     }).then(resp => resp.json())
+    .catch(error => console.log(error))
   }
 //register user and pass the data to backend
   static RegisterUser(body){
@@ -22,6 +23,7 @@ export default class APIService {
      },
      body:JSON.stringify(body)
     }).then(resp => resp.json())
+
   }
 //get loged user datails by token
   static GetUserDetails(token){
