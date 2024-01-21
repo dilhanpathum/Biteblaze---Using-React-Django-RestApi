@@ -24,4 +24,12 @@ class Order(models.Model):
     date =models.DateField(max_length=50)
     username=models.CharField(max_length=40)
 
+    
+class Food(models.Model):
+    foodname = models.CharField(max_length = 255)
+    foodprice = models.IntegerField()
+    foodimage = models.ImageField(upload_to='images/')
+
+
+
 

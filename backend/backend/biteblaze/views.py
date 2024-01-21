@@ -3,6 +3,8 @@ from rest_framework import viewsets
 from .serializers import TaskSerializer
 
 from .models import Order
+from. models import Food
+from biteblaze.models import Biteblaze
 
 from .models import Task
 from django.views.decorators.csrf import csrf_exempt
@@ -10,7 +12,14 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from biteblaze.serializers import BiteblazeSerializer
 from biteblaze.serializers import OrderSerializer
+
+from biteblaze.serializers import FoodSerializer
+
+
+
+
 from biteblaze.models import Biteblaze
+
 
 
 
@@ -61,3 +70,24 @@ def orderApi(request):
             return JsonResponse("Added Successfully",safe=False)
         return JsonResponse("Failed to Add",safe=False)
       
+
+@csrf_exempt
+def foodApi(request,id=0):
+    if request.method=='GET':
+        food = Food.objects.all()
+        food_serializer=FoodSerializer(food,many=True)
+        return JsonResponse(food_serializer.data,safe=False)
+    
+    elif request.method=='POST':
+        food_data=JSONParser().parse(request)
+        food_serializer=FoodSerializer(data=food_data)
+        if food_serializer.is_valid():
+            food_serializer.save()
+            return JsonResponse("Food Added Successfully",safe=False)
+        return JsonResponse("Failed to Add Food",safe=False)
+   
+    elif request.method=='DELETE':
+        food=Food.objects.get(id=id)
+        food.delete()
+        return JsonResponse("Food Deleted Successfully",safe=False)
+
