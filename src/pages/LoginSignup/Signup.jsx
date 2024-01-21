@@ -7,7 +7,7 @@ import APIService from '../../api/APIService';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { render } from '@testing-library/react';
+import { useCookies } from 'react-cookie';
 
 const Signup = () => {
 //registation function
@@ -17,11 +17,17 @@ const [password,setPassword] = useState('')
 const [email,setEmail] = useState('')
 const [fullname,setFullname] = useState('')
 let navigate = useNavigate()
-
+const [role] = useCookies(["role"]);
   if(response.id!=null){
+    
+    if(role["role"]==="admin"){
+      toast.success("Registraion Successfully!")
+      navigate("/admin")
 
+    }else{
     toast.success("Registraion Successfully!")
     navigate("/login")
+    }
   }
 
 
@@ -170,14 +176,18 @@ const RegisterBtn = () =>{
               </button>
             </div>
           </div>
-          
+          {role["role"]==='admin' ? (
+            <>
+          <br></br><br></br>
+          </>
+          ):(
           <p className="mt-10 text-center text-lg text-white">
-            Already have an Account?{' '}
-            <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">
-              Sign In
-            </a>
-          </p>
-
+          Already have an Account?{' '}
+          <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">
+            Sign In
+          </a>
+        </p>)
+          }
 
 
         </div>
