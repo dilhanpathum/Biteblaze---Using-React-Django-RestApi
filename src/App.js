@@ -11,6 +11,7 @@ import OrderForm from "./pages/PlaceOrder/OrderForm";
 import AddToCart from "./pages/AddToCart/AddToCart";
 import { CookiesProvider } from "react-cookie";
 import { Toaster } from "react-hot-toast";
+import AdminSignup from "./pages/LoginSignup/AdminSignup";
 function App() {
   return (
     
@@ -20,12 +21,13 @@ function App() {
         <Routes>
         
           <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="Admin" element={<Admin />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
-          <Route path="Signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/adminsignup" element={<AdminSignup />} />
           <Route path="/orderHistory" element={<OrderHistory />} />
-          <Route path="/OrderForm" element={<OrderForm />} />
+          <Route path="/orderForm" element={<OrderForm />} />
           <Route path="/addfood" element={<AddFood />} />
           <Route path="/menu" element={<AddToCart />} />
           
