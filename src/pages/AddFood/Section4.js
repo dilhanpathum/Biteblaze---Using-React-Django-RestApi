@@ -23,7 +23,7 @@ function Section4() {
     //With error handling
     async function Load() {
       try {
-        const result = await axios.get("http://127.0.0.1:8000/foodForm");
+        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/");
         setFoodname(result.data);
         console.log(result.data);
       } catch (err) {
@@ -49,7 +49,7 @@ function Section4() {
           event.preventDefault();
       try
           {
-           await axios.post("http://127.0.0.1:8000/foodForm",
+           await axios.post("http://127.0.0.1:8000/biteblaze/foodform/",
           {
           
            foodname:foodname,
@@ -70,6 +70,8 @@ function Section4() {
           }
       catch(err)
           {
+            console.error(err)
+            alert(foodimage)
             alert("Sorry !!! Your food is not added");
           }
      }
@@ -131,8 +133,8 @@ function Section4() {
       <Form.Group controlId="formBasicPhoto">
         <Form.Label>Upload Photo</Form.Label>
         <Form.Control type="file" 
-         accept="image/png, image/jpeg"  onChange={this.handleImageChange} required
-
+        
+        onChange={(event) => setFoodimage(event.target.files[0])}
         
         
         />
@@ -143,7 +145,7 @@ function Section4() {
       </Form.Group>
 
 
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit"  onClick={save}  >
         Add
       </Button>
       <Button variant="primary" type="submit">
