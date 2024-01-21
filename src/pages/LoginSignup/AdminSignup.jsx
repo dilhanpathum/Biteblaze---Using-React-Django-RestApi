@@ -7,32 +7,28 @@ import APIService from '../../api/APIService';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { useCookies } from 'react-cookie';
 
-const Signup = () => {
+
+const AdminSignup = () => {
 //registation function
 const [response ,setResponse] = useState([])
 const [username,setUsername] =useState('')
 const [password,setPassword] = useState('')
 const [email,setEmail] = useState('')
 const [fullname,setFullname] = useState('')
+const role = "admin"
 let navigate = useNavigate()
-const [role] = useCookies(["role"]);
-  if(response.id!=null){
-    
-    if(role["role"]==="admin"){
-      toast.success("Registraion Successfully!")
-      navigate("/admin")
 
-    }else{
-    toast.success("Registraion Successfully!")
-    navigate("/login")
-    }
+  if(response.id!=null){
+ 
+    toast.success("Admin Registraion Successfully!")
+    navigate("/admin")
+    
   }
 
 
 const RegisterBtn = () =>{
-  APIService.RegisterUser({email,password,fullname,username})
+  APIService.RegisterUser({email,password,fullname,username,role})
   .then((resp) => setResponse(resp))
   .catch(error => console.log(error))
 } 
@@ -176,18 +172,9 @@ const RegisterBtn = () =>{
               </button>
             </div>
           </div>
-          {role["role"]==='admin' ? (
-            <>
+          
           <br></br><br></br>
-          </>
-          ):(
-          <p className="mt-10 text-center text-lg text-white">
-          Already have an Account?{' '}
-          <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">
-            Sign In
-          </a>
-        </p>)
-          }
+
 
 
         </div>
@@ -207,7 +194,7 @@ const RegisterBtn = () =>{
   
   }
 
-export default Signup
+export default AdminSignup
 
 
 
