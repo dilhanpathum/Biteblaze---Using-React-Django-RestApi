@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo/logo.png";
 import "../../styles/HeaderStyles.css";
 import APIService from "../../api/APIService";
 import { useCookies } from "react-cookie";
-
+import { Navigate } from "react-router-dom";
 function Header() {
   const [nav, setNav] = useState(false);
 
@@ -26,6 +26,7 @@ function Header() {
   const [id, setId, removeId] = useCookies(["id"]);
   const [token, setToken, removeToken] = useCookies(["mytoken"]);
   //load user details
+  let navigate= useNavigate()
 
   useEffect(() => {
     if (token["mytoken"]) {
@@ -44,12 +45,14 @@ function Header() {
   }, [token]);
 
   //logout function
-
+  
   const logoutBtn = () =>{
     removeId(['id'])
     removeRole(['role'])
     removeUsername(['username'])
     removeToken(['mytoken'])
+    navigate(0)
+    navigate("/home")
   }
   return (
     <>
@@ -100,10 +103,10 @@ function Header() {
                   </>
                 )}
 
-                <Nav.Link as={Link} to={"/"}>
+                <Nav.Link as={Link} to={"/orderForm"}>
                   <div className="cart">
                     <i class="bi bi-bag fs-5"></i>
-                    <em className="roundpoint">2</em>
+                    <em className="roundpoint">0</em>
                   </div>
                 </Nav.Link>
               </Nav>
