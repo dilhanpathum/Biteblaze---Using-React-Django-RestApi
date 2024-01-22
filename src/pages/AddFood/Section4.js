@@ -7,6 +7,7 @@ import {useState} from 'react';
 import {  useEffect } from 'react';
 import axios from 'axios';
 
+
 function Section4() {
   
      
@@ -23,8 +24,8 @@ function Section4() {
     //With error handling
     async function Load() {
       try {
-        const result = await axios.get("http://127.0.0.1:8000/foodForm");
-        setFoodname(result.data);
+        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodForm/");
+        setFoodItems(result.data);
         console.log(result.data);
       } catch (err) {
         if (err.response) {
@@ -42,22 +43,34 @@ function Section4() {
       }
     }
       
-  
-  
-  async function save(event)
-      {
-          event.preventDefault();
+// const handleFormSubmit = (event) =>{
+//     event.preventDefault();
+
+const clearbtn = () =>{
+  setFoodname("");
+  setFoodprice("");
+  setFoodimage("");
+}
+
+async function save(event)
+{
+    event.preventDefault();
+   let data = new FormData();
+   data.append("foodname",foodname);
+   data.append("foodprice",foodprice);
+   data.append("foodimage", foodimage)
+
       try
           {
-           await axios.post("http://127.0.0.1:8000/foodForm",
-          {
+          await axios.post("http://127.0.0.1:8000/biteblaze/foodForm/",data,{
           
-           foodname:foodname,
-           foodprice:foodprice,
-           foodimage:foodimage
+           headers:{
+            'content-Type':'multipart/form-data'
+           }
   
           
           });
+
             alert("Your food has added Successfully");
             setFoodname("");
             setFoodprice("");
@@ -77,7 +90,7 @@ function Section4() {
      async function DeleteFood(id)
      {
         
-          await axios.delete("http://127.0.0.1:8000/student/" + id);
+          await axios.delete("http://127.0.0.1:8000/biteblaze/foodForm/" + id);
           alert("Food deleted Successfully");
           setFoodname("");
           setFoodprice("");
@@ -104,7 +117,7 @@ function Section4() {
 
 
          
-    <Form>
+    <Form >
       <Form.Group className="mb-3" controlId="formBasicFoodName">
         <Form.Label>Food Name</Form.Label>
         <Form.Control type="text" placeholder="Enter Food Name" 
@@ -131,7 +144,10 @@ function Section4() {
       <Form.Group controlId="formBasicPhoto">
         <Form.Label>Upload Photo</Form.Label>
         <Form.Control type="file" 
-         accept="image/png, image/jpeg"  onChange={this.handleImageChange} required
+
+         accept="image/png, image/jpeg"  
+         onChange={(event) => setFoodimage(event.target.files[0])} 
+         required
 
         
         
@@ -143,10 +159,10 @@ function Section4() {
       </Form.Group>
 
 
-      <Button variant="primary" type="submit">
+      <Button className='justify-content-center' variant="primary" type="submit"  onClick={save}>
         Add
       </Button>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={clearbtn}>
        Close
       </Button>
       <br></br>
@@ -175,7 +191,7 @@ function Section4() {
               <th scope="row">{food.id}</th>
               <td>{food.foodname}</td>
               <td>{food.foodprice}</td>
-              <td>{food.foodimage}</td>
+              <td><img src={food.foodimage}></img></td>
               <td>
                 <button
                   type="button"
