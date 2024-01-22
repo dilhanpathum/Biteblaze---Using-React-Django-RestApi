@@ -24,8 +24,10 @@ function Section4() {
     //With error handling
     async function Load() {
       try {
-        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodForm/");
-        setFoodItems(result.data);
+
+        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/");
+        setFoodname(result.data);
+
         console.log(result.data);
       } catch (err) {
         if (err.response) {
@@ -62,7 +64,9 @@ async function save(event)
 
       try
           {
+
           await axios.post("http://127.0.0.1:8000/biteblaze/foodForm/",data,{
+
           
            headers:{
             'content-Type':'multipart/form-data'
@@ -83,6 +87,8 @@ async function save(event)
           }
       catch(err)
           {
+            console.error(err)
+            alert(foodimage)
             alert("Sorry !!! Your food is not added");
           }
      }
@@ -145,10 +151,13 @@ async function save(event)
         <Form.Label>Upload Photo</Form.Label>
         <Form.Control type="file" 
 
+
          accept="image/png, image/jpeg"  
          onChange={(event) => setFoodimage(event.target.files[0])} 
          required
 
+
+       
         
         
         />
@@ -160,6 +169,7 @@ async function save(event)
 
 
       <Button className='justify-content-center' variant="primary" type="submit"  onClick={save}>
+
         Add
       </Button>
       <Button variant="primary" type="submit" onClick={clearbtn}>
