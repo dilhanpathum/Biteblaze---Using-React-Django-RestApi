@@ -72,8 +72,8 @@ def orderApi(request):
         return JsonResponse("Failed to Add",safe=False)
       
 class FoodView(viewsets.ModelViewSet):
-    serializer_class = OrderSerializer
-    queryset = Order.objects.all()     
+    serializer_class = FoodSerializer
+    queryset = Food.objects.all()     
 
 
 class FoodView(viewsets.ModelViewSet):

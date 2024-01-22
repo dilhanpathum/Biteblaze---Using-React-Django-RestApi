@@ -19,6 +19,8 @@ from django.urls import path, include,re_path
 from rest_framework.authtoken.views import obtain_auth_token
 from User.views import GetUserView
 from biteblaze import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # re_path(r'^student$',views.biteblazeApi),
@@ -33,6 +35,8 @@ urlpatterns = [
     
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
