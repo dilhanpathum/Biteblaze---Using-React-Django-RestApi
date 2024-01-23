@@ -26,7 +26,7 @@ function Section4() {
       try {
 
         const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/");
-        setFoodname(result.data);
+        setFoodItems(result.data);
 
         console.log(result.data);
       } catch (err) {
