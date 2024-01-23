@@ -71,13 +71,13 @@ p.expanded {
   margin-top: 5px;
 }
 
-.buttons-container1 {
+.buttons-container {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
 }
 
-button1 {
+.menu-item button{
   background-color: #FF4500;
   color: white;
   padding: 10px;
@@ -88,12 +88,12 @@ button1 {
   margin-bottom: 10px;
 }
 
-button1:hover {
+.menu-item button:hover {
   background-color: rgb(172, 166, 166);
   color: #FF4500;
 }
 
-.button1-space {
+.button-space {
   width: 10px;
 }
 
@@ -176,8 +176,8 @@ th {
 }
 
 .place-order-button:hover {
-  background-color: black;
-  
+  background-color:white ;
+  color: black;
 }
 
 .item-added-msg {
@@ -194,6 +194,7 @@ th {
   padding: 10px;
   border-radius: 5px;
 }
+
 
 .total-items-row {
   background-color: #474747;
