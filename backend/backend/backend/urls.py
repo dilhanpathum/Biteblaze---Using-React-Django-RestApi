@@ -14,11 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django import views
 from django.contrib import admin
 from django.urls import path, include,re_path
 from rest_framework.authtoken.views import obtain_auth_token
 from User.views import GetUserView
-from biteblaze import views
+from biteblaze.views import TaskView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -31,6 +32,7 @@ urlpatterns = [
     path('auth/', obtain_auth_token),
     path('', include('User.urls')),
     path(r'user/obtain_auth_token/', GetUserView.as_view()),
+
     
     
 
