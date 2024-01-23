@@ -5,7 +5,7 @@
     background-size: cover;
     background-attachment: fixed;
     padding-top: 50px;
-    padding-bottom: 280px;
+    padding-bottom: 100px;
   }
   
   .food-form-container {
@@ -18,7 +18,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 105px;
-    height: 350px;
+    height: 433px;
   }
   
   .food-form-container div {
@@ -72,4 +72,28 @@
   bottom: 0%;
 }
 
-  
+.table img{
+    width: 250px;
+    height: 200px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.table td {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.table tr{
+  vertical-align: middle;
+}

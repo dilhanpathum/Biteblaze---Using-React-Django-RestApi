@@ -2,10 +2,12 @@ import React from 'react'
 import "../../styles/Admin.css"
 import Header from '../../components/Layouts/Header'
 import Footer from '../../components/Layouts/Footer'
+import AuthforAdmin from '../../components/Layouts/AuthforAdmin'
 
 export const Admin = () => {
   return (
     <>
+    <AuthforAdmin/>
     <Header/>
     <div id="wrapper" className='adminTable'>
         <div className="d-flex flex-column" id="content-wrapper" style={{background: '#2d2f3e'}}>
@@ -15,8 +17,12 @@ export const Admin = () => {
                         <div className="col-12 col-sm-6 col-md-6 justify-content-end d-flex">
                             <h3 className="text-white mb-4 justify-content-center">Admin Dashboard</h3>
                         </div>
-                        <div className="col-12 col-sm-6 col-md-6 text-end" style={{marginBottom: '30px'}}><a
-                                className="btn btn-primary" role="button"><i class="fa fa-plus"></i>&nbsp;ADD USER</a></div>
+                        <div className="col-12 col-sm-2 col-md-2 text-end" style={{marginBottom: '30px'}}><a
+                                className="btn text-white" style={{backgroundColor:'#f77a27'}} role="button" href='/signup'><i class="fa fa-plus"></i>ADD USER</a></div>
+                                <div className="col-12 col-sm-2 col-md-2 text-center" style={{marginBottom: '30px'}}><a
+                                className="btn text-white" style={{backgroundColor:'#f77a27'}} role="button" href='/adminsignup'><i class="fa fa-plus"></i>ADD ADMIN USER</a></div>
+                                <div className="col-12 col-sm-2 col-md-2 " style={{marginBottom: '30px'}}><a
+                                className="btn text-white" style={{backgroundColor:'#f77a27'}} role="button" href='/addfood'><i class="fa fa-plus"></i>ADD FOOD</a></div>
                     </div>
                     <div className="card" id="TableSorterCard" style={{borderStyle: 'none',borderRadius: '6.5px'}}>
                         <div className="card-header py-3" style={{borderWidth: '0px',background: 'rgb(23,25,33)'}}>
@@ -45,11 +51,11 @@ export const Admin = () => {
                                         </thead>
                                         <tbody className="text-center" style={{borderTopWidth: '0px'}}>
                                             <tr style={{background: '#262a38'}}>
-                                                <td style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td className="text-center align-middle"
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
+                                                <td  className="text-center align-middle"
                                                     style={{maxHeight: '60px',height: '60px'}}><a
                                                     className="btn btnMaterial btn-flat success semicircle"
                                                         role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
@@ -59,11 +65,11 @@ export const Admin = () => {
                                             </tr>
 
                                             <tr style={{background: '#262a38'}}>
-                                                <td style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td className="text-center align-middle"
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
+                                                <td  className="text-center align-middle"
                                                     style={{maxHeight: '60px',height: '60px'}}><a
                                                     className="btn btnMaterial btn-flat success semicircle"
                                                         role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
@@ -72,11 +78,11 @@ export const Admin = () => {
                                                         data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
                                             </tr>
                                             <tr style={{background: '#262a38'}}>
-                                                <td style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td className="text-center align-middle"
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
+                                                <td  className="text-center align-middle"
                                                     style={{maxHeight: '60px',height: '60px'}}><a
                                                     className="btn btnMaterial btn-flat success semicircle"
                                                         role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
@@ -85,11 +91,11 @@ export const Admin = () => {
                                                         data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
                                             </tr>
                                             <tr style={{background: '#262a38'}}>
-                                                <td style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td className="text-center align-middle"
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
+                                                <td  className="text-center align-middle"
                                                     style={{maxHeight: '60px',height: '60px'}}><a
                                                     className="btn btnMaterial btn-flat success semicircle"
                                                         role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
@@ -98,11 +104,11 @@ export const Admin = () => {
                                                         data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
                                             </tr>
                                             <tr style={{background: '#262a38'}}>
-                                                <td style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td className="text-center align-middle"
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
+                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
+                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
+                                                <td  className="text-center align-middle"
                                                     style={{maxHeight: '60px',height: '60px'}}><a
                                                     className="btn btnMaterial btn-flat success semicircle"
                                                         role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
@@ -122,29 +128,7 @@ export const Admin = () => {
             </div>
           </div>
        </div> 
-    {/* <div className='adminTable'>
-      <table className='table'>
-        <thead>
-          <th>Id</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Orders</th>
-          <th>Actions</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>01</td>
-            <td>Dilhan</td>
-            <td>Pathum</td>
-            <td>2</td>
-            <td>
-              <span><i class="bi bi-trash3-fill text-danger"></i></span>
-              <span><i class="bi bi-eye-fill text-primary"></i></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div> */}
+    
     <Footer/>
     </>
   )

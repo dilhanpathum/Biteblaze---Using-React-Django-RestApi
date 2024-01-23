@@ -24,6 +24,7 @@
     padding-top: 5rem;
 }
 .order_history_table {
+    color: white;
     background: white;
     position: relative;
     width: 100%;

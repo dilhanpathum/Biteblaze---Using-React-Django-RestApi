@@ -1,5 +1,4 @@
 .coonn{
-<<<<<<< Updated upstream
      
     background:url("../assets/hero/hero-1.jpg") no-repeat center center;
     background-size: cover;
@@ -8,10 +7,6 @@
 }
 .bonn {
     background-color: #f77a27;
-    
-=======
-
-    background:url("../assets/hero/hero-1.jpg") no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
 
@@ -19,13 +14,18 @@
 .bonn {
     background-color: #f77a27;
 
->>>>>>> Stashed changes
+
 
 }
 .myimg{
+    margin-top: 10px;
     width: 100px;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.error{
+    margin-top: 20px; 
 }
