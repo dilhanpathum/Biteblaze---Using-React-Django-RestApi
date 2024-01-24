@@ -25,3 +25,35 @@ class GetUserView(APIView):
         user = request.user
         # 'user' now contains the User object associated with the token
         return Response({'id':user.id,'username': user.username,'role': user.role})
+
+
+        #get AdminndashBoard details accourding to registration  
+class CustomUserDetailsView(viewsets.ModelViewSet):
+    serializer_class = CustomUserSerializer
+    queryset = CustomUser.objects.all()
+
+class CustomUserDetailsView(APIView):
+    def get(self, request):
+        # Retrieve all CustomUser objects from the database
+        users = CustomUser.objects.all()
+
+        # Serialize the data using CustomUserSerializer with the required fields
+        serializer = CustomUserSerializer(users, many=True, fields=['id', 'fullname', 'username', 'email'])
+
+        # Return the serialized data as JSON response without wrapping it in a dictionary
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# Delete the user
+class CustomUserDeleteView(APIView):
+    def delete(self, request, user_id):
+        try:
+            # Retrieve the CustomUser object by ID
+            user = CustomUser.objects.get(pk=user_id)
+            user.delete()
+            return Response({'message': 'User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        
+        

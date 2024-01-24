@@ -3,8 +3,45 @@ import "../../styles/Admin.css"
 import Header from '../../components/Layouts/Header'
 import Footer from '../../components/Layouts/Footer'
 import AuthforAdmin from '../../components/Layouts/AuthforAdmin'
+import {useEffect, useState } from "react";
+import axios from 'axios';
 
 export const Admin = () => {
+
+const [response ,setResponse] = useState([])
+// const [id,setId] =useState('')
+const [email,setEmail] =useState('')
+const [fullname,setFullname] = useState('') 
+const [username,setUsername] = useState('')
+
+useEffect(() => {
+    (async () => await Load())();
+    }, []);
+
+    async function  Load()
+  {
+     const result = await axios.get(
+         "http://127.0.0.1:8000/api/users");
+         setEmail(result.data);
+         setFullname(result.data);
+         setUsername(result.data);
+         console.log(result.data);
+  }
+
+  async function DeleteStudent(id)
+   {
+      
+        await axios.delete("http://127.0.0.1:8000/api/users" + id);
+        alert("User deleted Successfully");
+        // setId("");
+        setEmail("");
+        setFullname("");
+        setUsername("");
+        Load();
+  
+  
+   }
+
   return (
     <>
     <AuthforAdmin/>
@@ -36,7 +73,7 @@ export const Admin = () => {
                         
                         <div className="row">
                             <div className="col-12">
-                                <div className="table-responsive" style={{borderTopStyle: 'none',background: '#171921'}}>
+                                <div className="" style={{borderTopStyle: 'none',background: '#171921',marginTop:'-120px'}}>
                                     <table className="table table-striped table tablesorter" id="ipi-table">
                                         <thead className="thead-dark"
                                             style={{background: 'rgb(33,37,48)',borderWidth: '0px',borderColor: 'rgb(0,0,0)',borderBottomColor: '#21252F'}}>
@@ -46,6 +83,7 @@ export const Admin = () => {
                                                 <th className="text-center">Full Name</th>
                                                 <th className="text-center">Username</th>
                                                 <th className="text-center">Email</th>
+
                                                 <th className="text-center filter-false sorter-false">Action</th>
                                             </tr>
                                         </thead>
