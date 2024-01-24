@@ -43,9 +43,9 @@ export const Admin = () => {
                                             <tr
                                                 style={{borderStyle: 'none', borderColor : 'rgba(255,255,255,0)' , background: '#21252f'}}>
                                                 <th className="text-center">ID</th>
-                                                <th className="text-center">First Name</th>
-                                                <th className="text-center">Last Name</th>
-                                                <th className="text-center">No of Orders</th>
+                                                <th className="text-center">Full Name</th>
+                                                <th className="text-center">Username</th>
+                                                <th className="text-center">Email</th>
                                                 <th className="text-center filter-false sorter-false">Action</th>
                                             </tr>
                                         </thead>
