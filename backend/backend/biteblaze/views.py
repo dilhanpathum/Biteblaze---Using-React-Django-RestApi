@@ -59,6 +59,8 @@ class TaskView(viewsets.ModelViewSet):
 # Create your views here.
     
 class OrderView(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
 @csrf_exempt
