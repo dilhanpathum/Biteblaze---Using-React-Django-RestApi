@@ -6,7 +6,7 @@ import "../../styles/Foodform.css";
 import {useState} from 'react';
 import {  useEffect } from 'react';
 import axios from 'axios';
-
+import { useCookies } from "react-cookie";
 
 function Section4() {
   
@@ -15,9 +15,10 @@ function Section4() {
   const [foodprice, setFoodprice] = useState("");
   const [foodimage, setFoodimage] = useState("");
   const [foodItems, setFoodItems] = useState([]);
-
+  const [token] = useCookies(["mytoken"]);
   
   useEffect(() => {
+  
     (async () => await Load())();
     }, []);
     
@@ -25,7 +26,13 @@ function Section4() {
     async function Load() {
       try {
 
-        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/");
+        const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/", {
+          headers: {
+            'Content-Type' : 'application/json',
+            'Authorization' : `Token ${token["mytoken"]}`
+          }
+         });
+
         setFoodItems(result.data);
 
         console.log(result.data);

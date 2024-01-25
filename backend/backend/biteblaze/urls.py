@@ -7,7 +7,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 
-router.register(r'orderform', views.OrderView ,basename='biteblaze')
+router.register(r'orderform', views.OrderView,basename='biteblaze')
 router.register(r'foodform', views.FoodView,basename='biteblaze')
 
 
