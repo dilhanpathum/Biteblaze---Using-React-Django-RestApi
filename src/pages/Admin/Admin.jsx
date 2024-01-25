@@ -7,40 +7,27 @@ import {useEffect, useState } from "react";
 import axios from 'axios';
 
 export const Admin = () => {
-
-const [response ,setResponse] = useState([])
-// const [id,setId] =useState('')
-const [email,setEmail] =useState('')
-const [fullname,setFullname] = useState('') 
-const [username,setUsername] = useState('')
-
-useEffect(() => {
-    (async () => await Load())();
+    const [response, setResponse] = useState([]);
+  
+    useEffect(() => {
+      Load();
     }, []);
-
-    async function  Load()
-  {
-     const result = await axios.get(
-         "http://127.0.0.1:8000/api/users");
-         setEmail(result.data);
-         setFullname(result.data);
-         setUsername(result.data);
-         console.log(result.data);
-  }
-
-  async function DeleteStudent(id)
-   {
-      
-        await axios.delete("http://127.0.0.1:8000/api/users" + id);
-        alert("User deleted Successfully");
-        // setId("");
-        setEmail("");
-        setFullname("");
-        setUsername("");
-        Load();
   
+    async function Load() {
+      try {
+        const result = await axios.get("http://127.0.0.1:8000/api/users");
+        setResponse(result.data);
+        console.log(result.data);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    }
   
-   }
+    async function DeleteUser(id) {
+      await axios.delete(`http://127.0.0.1:8000/api/users/${id}`);
+      alert("User deleted Successfully");
+      Load();
+    }
 
   return (
     <>
@@ -86,76 +73,24 @@ useEffect(() => {
                                                 <th className="text-center filter-false sorter-false">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="text-center" style={{borderTopWidth: '0px'}}>
-                                            <tr style={{background: '#262a38'}}>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td  className="text-center align-middle"
-                                                    style={{maxHeight: '60px',height: '60px'}}><a
-                                                    className="btn btnMaterial btn-flat success semicircle"
-                                                        role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
-                                                            className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover"
-                                                        role="button" style={{marginLeft: '5px'}} data-bs-toggle="modal"
-                                                        data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
-                                            </tr>
-
-                                            <tr style={{background: '#262a38'}}>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td  className="text-center align-middle"
-                                                    style={{maxHeight: '60px',height: '60px'}}><a
-                                                    className="btn btnMaterial btn-flat success semicircle"
-                                                        role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
-                                                            className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover"
-                                                        role="button" style={{marginLeft: '5px'}} data-bs-toggle="modal"
-                                                        data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
-                                            </tr>
-                                            <tr style={{background: '#262a38'}}>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td  className="text-center align-middle"
-                                                    style={{maxHeight: '60px',height: '60px'}}><a
-                                                    className="btn btnMaterial btn-flat success semicircle"
-                                                        role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
-                                                            className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover"
-                                                        role="button" style={{marginLeft: '5px'}} data-bs-toggle="modal"
-                                                        data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
-                                            </tr>
-                                            <tr style={{background: '#262a38'}}>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td  className="text-center align-middle"
-                                                    style={{maxHeight: '60px',height: '60px'}}><a
-                                                    className="btn btnMaterial btn-flat success semicircle"
-                                                        role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
-                                                            className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover"
-                                                        role="button" style={{marginLeft: '5px'}} data-bs-toggle="modal"
-                                                        data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
-                                            </tr>
-                                            <tr style={{background: '#262a38'}}>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>U0001</td>
-                                                <td className='text-center' style={{color: 'rgb(0,0,0)'}}>Dilhan</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>Pathum</td>
-                                                <td  className='text-center'style={{color: 'rgb(0,0,0)'}}>1</td>
-                                                <td  className="text-center align-middle"
-                                                    style={{maxHeight: '60px',height: '60px'}}><a
-                                                    className="btn btnMaterial btn-flat success semicircle"
-                                                        role="button" href="#" style={{color: 'rgb(0,197,179)'}}><i class="bi bi-eye-fill text-primary"></i></a><a
-                                                            className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover"
-                                                        role="button" style={{marginLeft: '5px'}} data-bs-toggle="modal"
-                                                        data-bs-target="#delete-modal" href="#"><i class="bi bi-trash3-fill text-danger"></i></a></td>
-                                            </tr>
-                                            
-                                            
-                                        </tbody>
+                                        <tbody className="text-center" style={{ borderTopWidth: '0px' }}>
+          {response.map((user) => (
+            <tr key={user.id} style={{ background: '#262a38' }}>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.id}</td>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.email}</td>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.fullname}</td>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.username}</td>
+              <td className="text-center align-middle" style={{ maxHeight: '60px', height: '60px' }}>
+                <a className="btn btnMaterial btn-flat success semicircle" role="button" href="#" style={{ color: 'rgb(0,197,179)' }}>
+                  <i className="bi bi-eye-fill text-primary"></i>
+                </a>
+                <a className="btn btnMaterial btn-flat accent btnNoBorders checkboxHover" role="button" style={{ marginLeft: '5px' }} data-bs-toggle="modal" data-bs-target="#delete-modal" href="#">
+                  <i className="bi bi-trash3-fill text-danger" onClick={() => DeleteUser(user.id)}></i>
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
                                     </table>
                                 </div>
                             </div>
