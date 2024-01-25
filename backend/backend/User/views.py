@@ -6,10 +6,17 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.parsers import JSONParser
+from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 class CustomUserView(viewsets.ModelViewSet):
+
     serializer_class = CustomUserSerializer
     queryset = CustomUser.objects.all()
+
+
+
 
 class GetUserView(APIView):
     authentication_classes = [TokenAuthentication]

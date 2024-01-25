@@ -4,6 +4,11 @@ import '../../styles/AddToCart.css';
 import Header from '../../components/Layouts/Header';
 import Footer from '../../components/Layouts/Footer';
 
+import axios from 'axios';
+
+
+
+
 const menuItems = [
   // ... (your existing menu items)
   {
@@ -80,6 +85,37 @@ const menuItems = [
 ];
 
 function AddToCart() {
+  const [foodItems, setFoodItems] = useState([]);
+useEffect(() => {
+  (async () => await Load())();
+  }, []);
+  
+  //With error handling
+  async function Load() {
+    try {
+
+      const result = await axios.get("http://127.0.0.1:8000/biteblaze/foodform/");
+      setFoodItems(result.data);
+
+      console.log(result.data);
+    } catch (err) {
+      if (err.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.error("Server responded with an error status:", err.response.status);
+        console.error("Error data:", err.response.data);
+      } else if (err.request) {
+        // The request was made but no response was received
+        console.error("No response received from server");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error("Error setting up the request:", err.message);
+      }
+    }
+  }
+
+
+
   const [expandedItem, setExpandedItem] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [itemAddedMsg, setItemAddedMsg] = useState(null);
@@ -172,51 +208,7 @@ function AddToCart() {
         </div>
       </div>
 
-      <div className="cart-container">
-        <h2>Shopping Cart</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((cartItem) => (
-              <tr key={cartItem.id}>
-                <td><img src={cartItem.image} alt={cartItem.name} style={{ width: '75px', height: '75px', borderRadius: '5px' }} /></td>
-                <td>{cartItem.name}</td>
-                <td>
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity - 1)}>-</button>
-                    <span>{cartItem.quantity}</span>
-                    <button onClick={() => updateQuantity(cartItem.id, cartItem.quantity + 1)}>+</button>
-                  </div>
-                </td>
-                <td>Rs {(cartItem.price * cartItem.quantity).toFixed(2)}</td>
-                <td><button className="delete-button" onClick={() => removeCartItem(cartItem.id)}>Delete</button></td>
-              </tr>
-            ))}
-            <tr className="total-items-row">
-              <td colSpan="2"></td>
-              <td>Total Quantity: {cartItems.reduce((total, item) => total + item.quantity, 0)}</td>
-              <td>Total Price: Rs {cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</td>
-              <td></td>
-            </tr>
-          </tbody>
-
-        </table>
-        {cartItems.length > 0 && (
-          <div className="order-summary">
-            {/* <p>Total: Rs {getTotalPrice()}</p> */}
-            <button className="place-order-button" onClick={placeOrder}>Place Order</button>
-          </div>
-        )}
-         {itemAddedMsg && <div className="item-added-msg">{itemAddedMsg}</div>}
-      </div>
+     
 
       <Footer />
     </>

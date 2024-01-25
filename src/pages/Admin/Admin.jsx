@@ -73,16 +73,17 @@ useEffect(() => {
                         
                         <div className="row">
                             <div className="col-12">
-                                <div className="table-responsive" style={{borderTopStyle: 'none',background: '#171921'}}>
+                                <div className="" style={{borderTopStyle: 'none',background: '#171921',marginTop:'-120px'}}>
                                     <table className="table table-striped table tablesorter" id="ipi-table">
                                         <thead className="thead-dark"
                                             style={{background: 'rgb(33,37,48)',borderWidth: '0px',borderColor: 'rgb(0,0,0)',borderBottomColor: '#21252F'}}>
                                             <tr
                                                 style={{borderStyle: 'none', borderColor : 'rgba(255,255,255,0)' , background: '#21252f'}}>
                                                 <th className="text-center">ID</th>
-                                                <th className="text-center">Email</th>
                                                 <th className="text-center">Full Name</th>
-                                                <th className="text-center">User Name</th>
+                                                <th className="text-center">Username</th>
+                                                <th className="text-center">Email</th>
+
                                                 <th className="text-center filter-false sorter-false">Action</th>
                                             </tr>
                                         </thead>
