@@ -16,15 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include,re_path
-
+from rest_framework.authtoken.views import obtain_auth_token
+from User.views import GetUserView
 from biteblaze import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    re_path(r'^student$',views.biteblazeApi),
-    re_path(r'^student$',views.biteblazeApi),
-    re_path(r'^student/([0-9]+)$',views.biteblazeApi),
+    # re_path(r'^student$',views.biteblazeApi),
+    # re_path(r'^student$',views.biteblazeApi),
+    # re_path(r'^student/([0-9]+)$',views.biteblazeApi),
     path('admin/', admin.site.urls),
-    path('biteblaze/', include('biteblaze.urls'))
+    path('', include('biteblaze.urls')),
+    path('auth/', obtain_auth_token),
+    path('', include('User.urls')),
+    path(r'user/obtain_auth_token/', GetUserView.as_view()),
+    
+    
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 

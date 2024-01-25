@@ -1,12 +1,21 @@
 from django.urls import path, include
 from rest_framework import routers
 from biteblaze import views
+
 #api verstoning
 
 router = routers.DefaultRouter()
-router.register(r'biteblaze', views.TaskView, basename='biteblaze')
+router.register(r'orderform', views.OrderView, basename='biteblaze')
+
+router.register(r'foodForm', views.FoodView, basename='biteblaze')
+
+router.register(r'foodform', views.FoodView, basename='biteblaze')
+
+
+
 
 urlpatterns = [
-    path("api/v1/", include(router.urls))
+    path("biteblaze/", include(router.urls)),
+
 ]
 

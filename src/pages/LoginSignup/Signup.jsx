@@ -1,10 +1,44 @@
 import React from 'react'
 import "../../styles/Login.css"
 import userr from "../../assets/logo/userr.png";
+import Header from '../../components/Layouts/Header'
+import Footer from '../../components/Layouts/Footer'
+import APIService from '../../api/APIService';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { useCookies } from 'react-cookie';
 
 const Signup = () => {
+//registation function
+const [response ,setResponse] = useState([])
+const [username,setUsername] =useState('')
+const [password,setPassword] = useState('')
+const [email,setEmail] = useState('')
+const [fullname,setFullname] = useState('')
+let navigate = useNavigate()
+const [role] = useCookies(["role"]);
+  if(response.id!=null){
+    
+    if(role["role"]==="admin"){
+      toast.success("Registraion Successfully!")
+      navigate("/admin")
 
+    }else{
+    toast.success("Registraion Successfully!")
+    navigate("/login")
+    }
+  }
+
+
+const RegisterBtn = () =>{
+  APIService.RegisterUser({email,password,fullname,username})
+  .then((resp) => setResponse(resp))
+  .catch(error => console.log(error))
+} 
   return (
+    <>
+    <Header/>
     <div className="coonn min-h-screen flex items-center justify-center bg-gray-300">
     <div className="container mx-auto p-16 ">
     <div>
@@ -28,37 +62,53 @@ const Signup = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <div className="space-y-6">
 
           <div>
               <label htmlFor="Name" className="name block text-lg font-medium leading-6 text-white">
-                Name
+                FullName
               </label>
               <div className="mt-2">
                 <input
-                  id="Name"
-                  name="Name"
-                  type="Name"
-                  autoComplete="Name"
+                  id="fullname"
+                  name="fullname"
+                  type="text"
+                  placeholder='Enter Full Name'
+                  value={fullname} onChange={e => setFullname(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.fullname!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.fullname}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
             <div>
               <label htmlFor="userName" className="name block text-lg font-medium leading-6 text-white">
-                User Name
+                Username
               </label>
               <div className="mt-2">
                 <input
-                  id="userName"
-                  name="userName"
-                  type="userName"
-                  autoComplete="userName"
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder='Enter username'
+                  value={username} onChange={e => setUsername(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.username!==null ? (
+              <>
+             
+                <span className="error text-center text-lg text-danger">{response.username}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
@@ -71,10 +121,18 @@ const Signup = () => {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
+                  placeholder='Enter Your Email'
+                  value={email} onChange={e => setEmail(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.email!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.email}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
@@ -94,30 +152,42 @@ const Signup = () => {
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  placeholder='Enter Your Password'
+                  value={password} onChange={e => setPassword(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {response.password!==null ? (
+              <>
+              
+                <span className="error text-center text-lg text-danger">{response.password}</span>
+                </>
+                 ) :null
+                 }
               </div>
             </div>
 
             <div>
               <button
-                type="submit"
-                className="bonn flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={RegisterBtn}
+                className="bonn flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-orange-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign Up
               </button>
             </div>
-          </form>
-
+          </div>
+          {role["role"]==='admin' ? (
+            <>
+          <br></br><br></br>
+          </>
+          ):(
           <p className="mt-10 text-center text-lg text-white">
-            Already have an Account?{' '}
-            <a href="#" className="font-semibold leading-6 text-white hover:text-indigo-500">
-              Sign In
-            </a>
-          </p>
-
+          Already have an Account?{' '}
+          <a href="/login" className="font-semibold leading-6 text-white hover:text-indigo-500">
+            Sign In
+          </a>
+        </p>)
+          }
 
 
         </div>
@@ -129,6 +199,8 @@ const Signup = () => {
         </div>
         </div>
         </div>
+        <Footer/>
+        </>
   )
 
  
