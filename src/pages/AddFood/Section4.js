@@ -7,6 +7,7 @@ import {useState} from 'react';
 import {  useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from "react-cookie";
+import { toast } from 'react-hot-toast';
 
 function Section4() {
   
@@ -72,17 +73,18 @@ async function save(event)
       try
           {
 
-          await axios.post("http://127.0.0.1:8000/biteblaze/foodForm/",data,{
+          await axios.post("http://127.0.0.1:8000/biteblaze/foodform/",data,{
 
           
            headers:{
-            'content-Type':'multipart/form-data'
+            'content-Type':'multipart/form-data',
+            'Authorization' : `Token ${token["mytoken"]}`
            }
   
           
           });
 
-            alert("Your food has added Successfully");
+            toast.success("Food Add Successfully!")
             setFoodname("");
             setFoodprice("");
             setFoodimage("");
@@ -103,8 +105,13 @@ async function save(event)
      async function DeleteFood(id)
      {
         
-          await axios.delete("http://127.0.0.1:8000/biteblaze/foodForm/" + id);
-          alert("Food deleted Successfully");
+          await axios.delete("http://127.0.0.1:8000/biteblaze/foodform/" + id, {
+            headers: {
+              'Content-Type' : 'application/json',
+              'Authorization' : `Token ${token["mytoken"]}`
+            }
+           });
+           toast.success("Food Deleted Successfully!");
           setFoodname("");
           setFoodprice("");
           setFoodimage("");

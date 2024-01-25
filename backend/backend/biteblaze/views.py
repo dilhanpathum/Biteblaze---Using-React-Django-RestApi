@@ -105,3 +105,8 @@ class FoodView(viewsets.ModelViewSet):
             food.delete()
             return JsonResponse("Food Deleted Successfully",safe=False)
 
+class MenuView(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = FoodSerializer
+    queryset = Food.objects.all()
