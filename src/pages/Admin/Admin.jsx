@@ -70,6 +70,7 @@ export const Admin = () => {
                                                 <th className="text-center">Full Name</th>
                                                 <th className="text-center">Username</th>
                                                 <th className="text-center">Email</th>
+                                                <th className="text-center">Role</th>
 
                                                 <th className="text-center filter-false sorter-false">Action</th>
                                             </tr>
@@ -78,9 +79,10 @@ export const Admin = () => {
           {response.map((user) => (
             <tr key={user.id} style={{ background: '#262a38' }}>
               <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.id}</td>
-              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.email}</td>
               <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.fullname}</td>
               <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.username}</td>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.email}</td>
+              <td className='text-center' style={{ color: 'rgb(0,0,0)' }}>{user.role}</td>
               <td className="text-center align-middle" style={{ maxHeight: '60px', height: '60px' }}>
                 <a className="btn btnMaterial btn-flat success semicircle" role="button" href="#" style={{ color: 'rgb(0,197,179)' }}>
                   <i className="bi bi-eye-fill text-primary"></i>
