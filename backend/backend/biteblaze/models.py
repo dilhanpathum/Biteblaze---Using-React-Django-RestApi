@@ -1,5 +1,5 @@
 from django.db import models
-
+from User.models import *
 
 
 
@@ -13,6 +13,7 @@ class Order(models.Model):
     contact = models.CharField(max_length=50)
     date =models.DateField(max_length=50)
     username=models.CharField(max_length=40)
+    userid  =  models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
 
     
 class Food(models.Model):

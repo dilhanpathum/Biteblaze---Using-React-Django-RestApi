@@ -6,6 +6,7 @@ import axios from 'axios';
 function Section() {
     const [token] = useCookies(["mytoken"]);
     const [orders,setOrders] = useState([]);
+    const [id, setId] = useCookies(["id"]);
     useEffect(() => {
   
         (async () => await Load())();
@@ -61,14 +62,19 @@ function Section() {
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                 {orders.map((order) => (
                                     <tr key={order.id}>
-
+                                        {id["id"]===order.userid ? (
+                                          <>
                                         <td>{order.item}</td>
                                         <td>{order.quentity}</td>
                                         <td>{order.address}</td>
                                         <td>{order.date}</td>
                                         <td>Pending</td>
+                                        </>
+                                        ) :null
+                                        }
                                     </tr>
           ))}
                                 </tbody>
