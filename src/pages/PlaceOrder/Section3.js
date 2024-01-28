@@ -5,14 +5,16 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "../../styles/OrderForm.css";
 import axios from 'axios';
-
+import { useCookies } from 'react-cookie';
 function Section3() {
+
   const [item, setItem] = useState('');
   const [quentity, setQuentity] = useState("");
   const [username, setUsername] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
   const [date, setDate] = useState([]);
+  const [token] = useCookies(["mytoken"]);
 
   useEffect(() => {
     (async () => await Load())();
@@ -21,7 +23,7 @@ function Section3() {
     //With error handling
     async function Load() {
       try {
-        const result = await axios.get("http://127.0.0.1:8000/biteblaze/orderform/");
+        const result = await axios.get("http://127.0.0.1:8000/biteblaze/getorders/");
         setDate(result.data);
         console.log(result.data);
       } catch (err) {
@@ -45,21 +47,35 @@ function Section3() {
   async function save(event)
       {
           event.preventDefault();
+          let data = new FormData();
+          data.append("item",item);
+          data.append("quentity",quentity);
+          data.append("username", username);
+          data.append("address", address);
+          data.append("contact", contact);
+          data.append("date", date);
       try
           {
-           await axios.post("http://127.0.0.1:8000/biteblaze/orderform/",
-          {
+           await axios.post("http://127.0.0.1:8000/biteblaze/orderform/",data,{
+            headers: {
+            'Content-Type' : 'application/json',
+            'Authorization' : `Token ${token["mytoken"]}`
+          }
+          // {
           
-            item: item,
-            quentity: quentity,
-            username: username,
-            address:address,
-            contact:contact,
-            date:date
+          //   item: item,
+          //   quentity: quentity,
+          //   username: username,
+          //   address:address,
+          //   contact:contact,
+          //   date:date
   
   
           
-          });
+          // },
+          
+          
+         } );
             alert("Your order has registered Successfully");
             setItem("");
             setQuentity("");
